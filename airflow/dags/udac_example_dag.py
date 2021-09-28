@@ -63,7 +63,6 @@ start_operator = PythonOperator(
 #     python_callable=list_keys,
 #     dag=dag
 # )
-
 create_table = PostgresOperator(
     task_id="create_table",
     dag=dag,
@@ -132,7 +131,7 @@ run_quality_checks = DataQualityOperator(
     dag=dag,
     provide_context=True,
     params={
-        'table': 'artists', 'songplays', 'songs', 'users'
+        'table': ['artists', 'songplays', 'songs', 'users']
     }
 )
 
@@ -143,13 +142,13 @@ end_operator = PythonOperator(
 
 #Setup Task Dependacies
 #start_operator >> list_task
-start_operator >> create_table 
+#start_operator >> create_table 
 
-#start_operator >> stage_events_to_redshift
-#start_operator >> stage_songs_to_redshift
+start_operator >> stage_events_to_redshift
+start_operator >> stage_songs_to_redshift
 
-create_table >> stage_events_to_redshift
-create_table >> stage_songs_to_redshift
+#create_table >> stage_events_to_redshift
+#create_table >> stage_songs_to_redshift
 
 #list_task >> stage_events_to_redshift
 #list_task >> stage_songs_to_redshift
