@@ -20,7 +20,7 @@ class StageToRedshiftOperator(BaseOperator):
                  # Define your operators params (with defaults) here
                  # Example:
                  # redshift_conn_id=your-connection-name
-                 json_path,
+                 json_path="",
                  redshift_conn_id="",
                  aws_credentials_id="",
                  table="",
