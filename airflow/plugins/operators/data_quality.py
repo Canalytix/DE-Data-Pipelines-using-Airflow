@@ -11,7 +11,7 @@ class DataQualityOperator(BaseOperator):
                  # Define your operators params (with defaults) here
                  # Example:
                  # conn_id = your-connection-name
-                 params = ""
+                 params = "",
                  *args, **kwargs):
 
         super(DataQualityOperator, self).__init__(*args, **kwargs)
